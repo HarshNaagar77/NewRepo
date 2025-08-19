@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@media (max-width: 480px) {
+
+    .body{
+        overflow: hidden;
+    }
+	.mobile-up {
+        padding-right: 100px;
+	}
+}
