@@ -1,6 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+    navigate('/profile');
+
+  }
+
   return (
     <div className="flex  justify-center min-h-screen bg-gray-50">
       
@@ -15,7 +30,7 @@ const Login = () => {
           </p>
         </div>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={submitHandler}>
           <div className="relative">
             <label 
               htmlFor="email" 
@@ -27,6 +42,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter email address"
               className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-600 sm:text-sm"
             />
@@ -43,6 +59,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"
               className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-600 sm:text-sm"
             />
@@ -51,7 +68,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="w-full justify-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold leading-6 text-gray-700 shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
+              className="w-full justify-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold leading-6 text-gray-700 shadow-sm hover:bg-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
             >
               Login
             </button>
